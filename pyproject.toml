@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ipamd"
+version = "0.4.0"
+description = "IP address management: prefix tree, next-free allocation, address map, REST API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Chimnadindu Chibueze"}]
+dependencies = ["fastapi>=0.110", "uvicorn>=0.27"]
+
+[project.optional-dependencies]
+test = ["pytest", "httpx"]
+
+[project.scripts]
+ipamd = "ipamd.__main__:main"
+
+[tool.setuptools]
+packages = ["ipamd"]
+
+[tool.setuptools.package-data]
+ipamd = ["web/*"]

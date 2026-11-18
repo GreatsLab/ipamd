@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ipamd</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='7' height='7' fill='%230B7A75'/%3E%3Crect x='9' width='7' height='7' fill='%230B7A75'/%3E%3Crect y='9' width='7' height='7' fill='%23C88A04'/%3E%3Crect x='9' y='9' width='7' height='7' fill='%23D8DEE6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <strong class="brand">ipamd</strong>
+  <form id="search" role="search"><input id="q" placeholder="Find an IP, subnet, hostname or MAC" autocomplete="off" spellcheck="false" aria-label="Search"></form>
+  <button id="health-btn" class="pill-btn" type="button" hidden></button>
+  <button id="token-btn" class="ghost" type="button">Write access</button>
+</header>
+
+<div class="layout">
+  <aside class="tree">
+    <div class="tree-head">
+      <select id="vrf" aria-label="VRF"></select>
+      <button id="new-prefix" class="primary" type="button">Add prefix</button>
+    </div>
+    <ol id="tree"></ol>
+  </aside>
+
+  <main id="detail">
+    <div class="empty">
+      <h1>Your address space, in one place.</h1>
+      <p>Pick a prefix on the left, or add your first one: the big block your site uses, like <code>10.20.0.0/16</code>. Then carve subnets out of it and assign addresses. ipamd keeps track of what's free.</p>
+    </div>
+  </main>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="dlg-form">
+    <h2 id="dlg-title"></h2>
+    <div id="dlg-body"></div>
+    <p id="dlg-err" class="err" role="alert"></p>
+    <div class="dlg-actions"><button value="cancel" class="ghost" formnovalidate>Cancel</button><button id="dlg-ok" value="ok" class="primary"></button></div>
+  </form>
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

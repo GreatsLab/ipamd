@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[test]"
+      - run: pytest -q
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ipamd .
+      - run: |
+          docker run -d --name ipamd -p 8000:8000 ipamd
+          for i in $(seq 1 20); do curl -fs localhost:8000/healthz && break; sleep 1; done
+          python3 examples/seed.py http://localhost:8000
+          curl -fs localhost:8000/api/health | python3 -m json.tool | head -20
