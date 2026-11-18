@@ -6,7 +6,7 @@ IP address management that a small team will actually keep up to date. A prefix 
 
 ## Why
 
-Every network I've seen tracks addresses in a spreadsheet, and every spreadsheet is wrong within a month. Someone grabs `.50` because "it looked free", a printer and a camera end up with the same IP, and nobody knows what `10.20.4.0/24` was for.
+Most small networks track addresses in a spreadsheet, and the spreadsheet is usually wrong within a month. Someone grabs `.50` because "it looked free", a printer and a camera end up with the same IP, and nobody knows what `10.20.4.0/24` was for.
 
 NetBox fixes that, but it's a big Django install with a lot to learn. For a hosting company or an office with a few hundred subnets, I wanted the parts that stop the mistakes: **the tool hands out addresses, so nobody guesses**, it flags the conflicts, and it has an API so provisioning scripts can call it instead of a person.
 
